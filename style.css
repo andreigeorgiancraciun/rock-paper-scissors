@@ -22,7 +22,7 @@ header h1{
 }
 
 .score-board{
-    margin: 20px auto;
+    margin: 100px auto;
     border: 3px solid white;
     border-radius: 4px;
     text-align: center;
@@ -32,6 +32,20 @@ header h1{
     padding: 15px 20px;
     font-family: Asap, sans-serif;
     position: relative;
+}
+
+.user-face{
+    position: absolute;
+    top:-30px;
+    left:-150px;
+    font-size: 7rem;
+}
+
+.comp-face{
+    position: absolute;
+    top:-30px;
+    right:-170px;
+    font-size: 7rem;
 }
 
 .badge{
