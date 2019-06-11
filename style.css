@@ -14,6 +14,7 @@ header{
 
 }
 
+
 header h1{
     color: #25272E;
     text-align: center;
@@ -96,7 +97,7 @@ header h1{
 
 .choise:hover{
     cursor: pointer;
-    background: red;
+    border: 2px solid orange;
 }
 
 #action-message{
@@ -108,71 +109,14 @@ header h1{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.green-glow{
+    background: green;
+}
+
+.red-glow{
+    background: red;
+}
+
+.white-glow{
+    background: white;
+}
