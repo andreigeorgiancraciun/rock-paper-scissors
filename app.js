@@ -1,6 +1,7 @@
 
 let userScore=0;
 let computerScore=0;
+const winningScore = 5;
 
 const userScore_span = document.getElementById("user-score"); // scorul tau
 const computerScore_span = document.getElementById("computer-score");// scorul calculatorului
@@ -10,6 +11,9 @@ const result_p = document.querySelector(".result > p"); // the result showed as 
 const rock_div = document.getElementById("r"); //butonul pentru rock
 const paper_div = document.getElementById("p"); //butonul pentru paper
 const scissors_div = document.getElementById("s"); // butonul pentru scissors
+
+const userface_div = document.querySelector(".user-face");
+const finalMessage_p = document.getElementById("finalMessage");
 
 function getComputerChoise(){
     const choise = ["r", "p", "s"];
@@ -22,6 +26,36 @@ function convertToWorld(letter){
     if(letter == "s") return "SCISSORS";
 }
 
+function checkScore(){
+    if(userScore === winningScore){
+        endGame("player wins");
+        
+    } else if(computerScore === winningScore){
+        endGame("computer wins");
+        
+    }
+}
+
+function resetGame(){
+    userScore = 0;
+    computerScore = 0;
+    
+    // incearca sa resetezi mesajele nu doar scorul 
+}
+
+function endGame(finalResult){
+    if(finalResult === "player wins"){
+        finalMessage_p.innerHTML = "YOU WON THE GAME!"
+    } else {
+        finalMessage_p.innerHTML = "What happened? C'mon, try again!!"
+    }
+
+    // optional incearca sa adaugi un buton aici pentru reset
+
+    resetGame();
+
+}
+
 function win(userChoise, computerChoise){
     userScore++;
     userScore_span.innerHTML = userScore;
@@ -32,6 +66,11 @@ function win(userChoise, computerChoise){
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("green-glow")} , 300);
     
+    userface_div.innerHTML = "🤩";
+    setTimeout(function(){
+        userface_div.innerHTML = "&#129300"}, 700);
+
+    checkScore();
 }
 
 function lose(userChoise, computerChoise){
@@ -43,6 +82,12 @@ function lose(userChoise, computerChoise){
     document.getElementById(userChoise).classList.add("red-glow");
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("red-glow")} , 300);
+
+    userface_div.innerHTML = "🥴";
+    setTimeout(function(){
+        userface_div.innerHTML = "&#129300"}, 700);
+
+    checkScore();
 }
 
 function draw(userChoise, computerChoise){
@@ -52,6 +97,12 @@ function draw(userChoise, computerChoise){
     document.getElementById(userChoise).classList.add("white-glow");
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("white-glow")} , 300);
+
+    userface_div.innerHTML = "&#129320";
+    setTimeout(function(){
+        userface_div.innerHTML = "&#129300"}, 700);
+
+    checkScore();
 }
 
 function game(userChoise){
