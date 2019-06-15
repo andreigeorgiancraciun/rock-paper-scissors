@@ -12,8 +12,10 @@ const rock_div = document.getElementById("r"); //butonul pentru rock
 const paper_div = document.getElementById("p"); //butonul pentru paper
 const scissors_div = document.getElementById("s"); // butonul pentru scissors
 
-const userface_div = document.querySelector(".user-face");
-const finalMessage_p = document.getElementById("finalMessage");
+const userface_div = document.querySelector(".user-face");//sa pot sa schimb emoticonul in momentul in care fac o actiune
+const finalMessage_p = document.getElementById("finalMessage");//mesajul final cu cine a castigat
+
+const resetButton_div = document.getElementById("button");//buttonul de reset 
 
 function getComputerChoise(){
     const choise = ["r", "p", "s"];
@@ -30,6 +32,7 @@ function checkScore(){
     if(userScore === winningScore){
         endGame("player wins");
         
+    
     } else if(computerScore === winningScore){
         endGame("computer wins");
         
@@ -39,20 +42,24 @@ function checkScore(){
 function resetGame(){
     userScore = 0;
     computerScore = 0;
+    userScore_span.innerHTML = userScore;
+    computerScore_span.innerHTML = computerScore;
+    result_p.innerHTML = "Best of Five. Shall we start?";
+    finalMessage_p.innerHTML = "";
     
-    // incearca sa resetezi mesajele nu doar scorul 
+    
 }
 
 function endGame(finalResult){
     if(finalResult === "player wins"){
-        finalMessage_p.innerHTML = "YOU WON THE GAME!"
+        finalMessage_p.innerHTML = "YOU WON THE GAME!";
+        
     } else {
-        finalMessage_p.innerHTML = "What happened? C'mon, try again!!"
+        finalMessage_p.innerHTML = "What happened? C'mon, try again!!";
+        
     }
 
-    // optional incearca sa adaugi un buton aici pentru reset
-
-    resetGame();
+    
 
 }
 
@@ -70,8 +77,8 @@ function win(userChoise, computerChoise){
     setTimeout(function(){
         userface_div.innerHTML = "&#129300"}, 700);
 
-    checkScore();
-}
+    checkScore();}
+
 
 function lose(userChoise, computerChoise){
     computerScore++;
@@ -130,17 +137,37 @@ function game(userChoise){
 }
 
 function main(){
-    rock_div.addEventListener('click', function() {
-        game("r");
-    })
 
-    paper_div.addEventListener('click', function (){
-        game("p");
-    })
+    
+        rock_div.addEventListener('click', function() {
+            
+            if (userScore == 5 || computerScore == 5){
+                rock_div.stopPropagation();}
+            else game("r");
+        })
 
-    scissors_div.addEventListener('click', function(){
-        game("s");
-})
+        paper_div.addEventListener('click', function (){
+            if (userScore == 5 || computerScore == 5){
+                paper_div.stopPropagation();}
+            else game("p");
+            
+        })
+
+        scissors_div.addEventListener('click', function(){
+            if (userScore == 5 || computerScore == 5){
+                scissors_div.stopPropagation();}
+            else game("s");
+
+        })
+
+
+        
+    
+    
+
+resetButton_div.addEventListener('click', function(){
+            resetGame();
+        });
 }
 
 main();
