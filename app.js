@@ -18,17 +18,20 @@ const finalMessage_p = document.getElementById("finalMessage");//mesajul final c
 const resetButton_div = document.getElementById("button");//buttonul de reset 
 
 function getComputerChoise(){
+
     const choise = ["r", "p", "s"];
     return choise[Math.floor(Math.random()*3)];
 }
 
 function convertToWorld(letter){
+
     if(letter == "r") return "ROCK";
     if(letter == "p") return "PAPER";
     if(letter == "s") return "SCISSORS";
 }
 
 function checkScore(){
+
     if(userScore === winningScore){
         endGame("player wins");
         
@@ -40,26 +43,26 @@ function checkScore(){
 }
 
 function resetGame(){
+
     userScore = 0;
     computerScore = 0;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
+    userface_div.innerHTML = "&#129322;";
     result_p.innerHTML = "Best of Five. Shall we start?";
     finalMessage_p.innerHTML = "";
-    
-    
 }
 
 function endGame(finalResult){
+
     if(finalResult === "player wins"){
         finalMessage_p.innerHTML = "YOU WON THE GAME!";
-        
+        userface_div.innerHTML = "&#129321;";
+            
     } else {
         finalMessage_p.innerHTML = "What happened? C'mon, try again!!";
-        
+        userface_div.innerHTML = "&#129324;";
     }
-
-    
 
 }
 
@@ -73,11 +76,8 @@ function win(userChoise, computerChoise){
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("green-glow")} , 300);
     
-    userface_div.innerHTML = "🤩";
-    setTimeout(function(){
-        userface_div.innerHTML = "&#129300"}, 700);
-
-    checkScore();}
+    checkScore();
+}
 
 
 function lose(userChoise, computerChoise){
@@ -90,10 +90,6 @@ function lose(userChoise, computerChoise){
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("red-glow")} , 300);
 
-    userface_div.innerHTML = "🥴";
-    setTimeout(function(){
-        userface_div.innerHTML = "&#129300"}, 700);
-
     checkScore();
 }
 
@@ -104,10 +100,6 @@ function draw(userChoise, computerChoise){
     document.getElementById(userChoise).classList.add("white-glow");
     setTimeout(function(){
         document.getElementById(userChoise).classList.remove("white-glow")} , 300);
-
-    userface_div.innerHTML = "&#129320";
-    setTimeout(function(){
-        userface_div.innerHTML = "&#129300"}, 700);
 
     checkScore();
 }
@@ -160,10 +152,6 @@ function main(){
 
         })
 
-
-        
-    
-    
 
 resetButton_div.addEventListener('click', function(){
             resetGame();

@@ -114,7 +114,7 @@ header h1{
 
 #finalMessage{
     font-size: 40px;
-    margin-top: 50px; 
+    margin: 20px; 
 }
 
 #button {
@@ -141,7 +141,6 @@ header h1{
 }
 
 footer {
-  position: fixed;
   bottom: 75px;
   width: 100%;
   text-align: center;
